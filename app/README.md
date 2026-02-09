@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# iBusiness OS - ERP System
 
-## Getting Started
+Sistema ERP integrado de Ventas, Inventario, Compras, Gastos y Bancos. Desarrollado como Progressive Web App (PWA) para una experiencia nativa en dispositivos móviles.
 
-First, run the development server:
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Base de Datos**: Supabase (PostgreSQL)
+- **Estilos**: Tailwind CSS v4
+- **Iconos**: Lucide React
+- **PWA**: Manifest + Service Worker Ready
+
+## 📦 Módulos
+
+| Módulo | Descripción |
+|--------|-------------|
+| Dashboard | Métricas en tiempo real y alertas |
+| Ventas | Creación de ventas, historial, estadísticas |
+| Inventarios | CRUD de productos, stock por bodega |
+| Compras | Órdenes de compra, backorders, recepción |
+| Gastos | Registro de gastos con deducción bancaria |
+| Bancos | Conciliación bancaria automática con CSV |
+
+## 🛠️ Instalación Local
 
 ```bash
+# Clonar repositorio
+git clone <repo-url>
+cd iBusiness_OS/app
+
+# Instalar dependencias
+npm install
+
+# Configurar variables de entorno
+cp .env.example .env.local
+# Editar .env.local con credenciales de Supabase
+
+# Ejecutar en desarrollo
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌐 Variables de Entorno
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Crear archivo `.env.local` con:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+```
 
-## Learn More
+## 📱 PWA
 
-To learn more about Next.js, take a look at the following resources:
+La app está configurada como Progressive Web App:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Instalable**: Añade a pantalla de inicio desde el navegador
+- **Standalone**: Sin barra de navegación del navegador
+- **Responsive**: Navegación adaptada a móvil (bottom navigation)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Despliegue en Vercel
 
-## Deploy on Vercel
+### Opción 1: Deploy automático
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-repo)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Opción 2: CLI
+
+```bash
+# Instalar Vercel CLI
+npm i -g vercel
+
+# Deploy
+cd app
+vercel
+
+# Producción
+vercel --prod
+```
+
+### Configuración en Vercel Dashboard
+
+1. Ve a [vercel.com](https://vercel.com) e importa el repositorio
+2. **Root Directory**: `app`
+3. **Framework Preset**: Next.js
+4. **Environment Variables**: Añade `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+5. Click "Deploy"
+
+## 🧪 Build de Producción
+
+```bash
+# Test de build local
+npm run build
+
+# Preview de producción
+npm run start
+```
+
+## 📁 Estructura del Proyecto
+
+```
+app/
+├── public/
+│   ├── icons/          # Iconos PWA
+│   └── manifest.json   # PWA Manifest
+├── src/
+│   ├── app/
+│   │   ├── ventas/
+│   │   ├── inventarios/
+│   │   ├── compras/
+│   │   ├── gastos/
+│   │   ├── bancos/
+│   │   ├── layout.tsx
+│   │   └── page.tsx    # Dashboard
+│   ├── components/
+│   │   ├── Sidebar.tsx
+│   │   └── Toast.tsx
+│   └── lib/
+│       ├── supabase.ts
+│       └── utils.ts
+└── package.json
+```
+
+## 📄 Licencia
+
+Propietario - ANIGRAVITY 2026

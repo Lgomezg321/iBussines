@@ -105,7 +105,7 @@ export default function ConciliacionPage() {
                     .filter(row => row.Fecha && row.Monto)
                     .map(row => ({
                         fecha: new Date(row.Fecha),
-                        descripcion: row.Descripción || row['Descripcion'] || '',
+                        descripcion: row.Descripción || (row as unknown as Record<string, string>)['Descripcion'] || '',
                         monto: parseFloat(row.Monto.replace(/[^0-9.-]/g, '')),
                         originalRow: row,
                     }))
@@ -273,8 +273,8 @@ export default function ConciliacionPage() {
                                 key={banco.id}
                                 onClick={() => setSelectedBanco(banco.id)}
                                 className={`p-4 rounded-xl border-2 transition-all text-left ${selectedBanco === banco.id
-                                        ? 'border-emerald-500 bg-emerald-50'
-                                        : 'border-slate-200 hover:border-emerald-300'
+                                    ? 'border-emerald-500 bg-emerald-50'
+                                    : 'border-slate-200 hover:border-emerald-300'
                                     }`}
                             >
                                 <div className="font-semibold text-slate-800">{banco.nombre_banco}</div>
@@ -296,8 +296,8 @@ export default function ConciliacionPage() {
                         <div
                             {...getRootProps()}
                             className={`border-2 border-dashed rounded-xl p-12 text-center cursor-pointer transition-all ${isDragActive
-                                    ? 'border-emerald-500 bg-emerald-50'
-                                    : 'border-slate-300 hover:border-emerald-400 hover:bg-emerald-50/50'
+                                ? 'border-emerald-500 bg-emerald-50'
+                                : 'border-slate-300 hover:border-emerald-400 hover:bg-emerald-50/50'
                                 }`}
                         >
                             <input {...getInputProps()} />
@@ -494,8 +494,8 @@ export default function ConciliacionPage() {
                                                     </td>
                                                     <td className="px-6 py-4">
                                                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${result.systemRecord?.tipo === 'Egreso'
-                                                                ? 'bg-red-100 text-red-700'
-                                                                : 'bg-emerald-100 text-emerald-700'
+                                                            ? 'bg-red-100 text-red-700'
+                                                            : 'bg-emerald-100 text-emerald-700'
                                                             }`}>
                                                             {result.systemRecord?.tipo}
                                                         </span>

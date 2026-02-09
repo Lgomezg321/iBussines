@@ -63,17 +63,19 @@ export async function createProduct(input: CreateProductInput) {
         }
 
         // Insert inventory record
-        const { error: inventoryError } = await supabase
-            .from('tabla_inventario')
-            .insert({
-                producto_id: producto.id,
-                bodega_id: bodega.id,
-                cantidad: input.stock_inicial,
-            })
+        if (bodega) {
+            const { error: inventoryError } = await supabase
+                .from('tabla_inventario')
+                .insert({
+                    producto_id: producto.id,
+                    bodega_id: bodega.id,
+                    cantidad: input.stock_inicial,
+                })
 
-        if (inventoryError) {
-            console.error('Error creating inventory:', inventoryError)
-            return { success: false, error: 'Producto creado pero error al registrar inventario' }
+            if (inventoryError) {
+                console.error('Error creating inventory:', inventoryError)
+                return { success: false, error: 'Producto creado pero error al registrar inventario' }
+            }
         }
     }
 
